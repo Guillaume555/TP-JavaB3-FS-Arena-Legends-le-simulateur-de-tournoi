@@ -8,6 +8,9 @@ public class Main {
     int x;
     int resultat;
     int points;
+    int totalCritiques;
+    double pourcentage;
+
 
     public void menu() {
         int choix;
@@ -59,9 +62,23 @@ public class Main {
                     break;
                 
                 case 3:
+                	totalCritiques = 0;
+
                     System.out.println("Option 3 : Test de coup critique");
+                    for (int i = 0; i < 10000; i++) {
+                    	if (rand.nextInt(100) < 15) {
+                    		totalCritiques++;
+                    	}
+                    }
+                    //pourcentage réel
+                    pourcentage = (totalCritiques / 10000.0) * 100;
+                    		
+                    //affichage
+                    System.out.println("Nombre de coup critique : " + totalCritiques + " / 10 000");
+                    System.out.println("pourcentage réel obtenu : " + pourcentage + "%");
                     break;
                     
+                                    
                 default:
                     System.out.println("Donnée incorrecte, veuillez taper un nombre entre 0 et 3");  
             }

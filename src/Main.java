@@ -10,6 +10,8 @@ public class Main {
     int points;
     int totalCritiques;
     double pourcentage;
+    int serieActuelle;   
+    int plusLongueSerie;
 
 
     public void menu() {
@@ -63,12 +65,23 @@ public class Main {
                 
                 case 3:
                 	totalCritiques = 0;
+                	serieActuelle = 0;
+                	plusLongueSerie = 0;
 
                     System.out.println("Option 3 : Test de coup critique");
                     for (int i = 0; i < 10000; i++) {
-                    	if (rand.nextInt(100) < 15) {
-                    		totalCritiques++;
-                    	}
+                        if (rand.nextInt(100) < 15) {
+                            totalCritiques++;
+                            serieActuelle++;
+                            
+                            // On vérifie le record seulement si c est un critique
+                            if (serieActuelle > plusLongueSerie) {
+                                plusLongueSerie = serieActuelle;
+                            }
+                        } else {
+                            // si ce n'est pas un critique, on arrete
+                            serieActuelle = 0;
+                        }
                     }
                     //pourcentage réel
                     pourcentage = (totalCritiques / 10000.0) * 100;
@@ -76,8 +89,9 @@ public class Main {
                     //affichage
                     System.out.println("Nombre de coup critique : " + totalCritiques + " / 10 000");
                     System.out.println("pourcentage réel obtenu : " + pourcentage + "%");
-                    break;
-                    
+                    System.out.println("la plus longue serie est  : " + plusLongueSerie);
+
+                    break;       
                                     
                 default:
                     System.out.println("Donnée incorrecte, veuillez taper un nombre entre 0 et 3");  

@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class StatsArene {
 	
@@ -28,6 +29,9 @@ public class StatsArene {
     	}
     	System.out.println();
 	    
+    	//partie 4 
+    	char[][] grille = StatsArene.creerGrille();
+    	StatsArene.afficherGrille(grille);
 
     }
 
@@ -120,4 +124,46 @@ public class StatsArene {
 	    return resultat;
 	}
 	
+	
+	//partie 4
+
+    public static char[][] creerGrille() {
+        char[][] grille = new char[8][8];
+
+        for (int ligne = 0; ligne < 8; ligne++) {
+            for (int col = 0; col < 8; col++) {
+                grille[ligne][col] = '.';
+            }
+        }
+
+        Random rand = new Random();
+        for (int i = 0; i < 6; i++) {
+            placer(grille, '#', rand);
+        }
+        placer(grille, 'A', rand);
+        placer(grille, 'B', rand);
+
+        return grille;
+    }
+
+    public static void placer(char[][] grille, char c, Random rand) {
+        int ligne;
+        int col;
+
+        do {
+            ligne = rand.nextInt(8);
+            col = rand.nextInt(8);
+        } while (grille[ligne][col] != '.'); //
+
+        grille[ligne][col] = c;
+    }
+
+    public static void afficherGrille(char[][] g) {
+        for (int ligne = 0; ligne < 8; ligne++) {
+            for (int col = 0; col < 8; col++) {
+                System.out.print(g[ligne][col] + " ");
+            }
+            System.out.println();
+        }
+    }
 }

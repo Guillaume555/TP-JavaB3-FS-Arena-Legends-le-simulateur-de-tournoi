@@ -18,6 +18,15 @@ public class StatsArene {
     	    System.out.print(s + " ");
     	}
     	System.out.println();
+    	
+    	//partie 3
+    	int[] uniques = StatsArene.sansDoublons(scores);
+    	System.out.println("Taille sans doublons : " + uniques.length);
+    	//tests
+    	for (int u : uniques) {
+    	    System.out.print(u + " ");
+    	}
+    	System.out.println();
 	    
 
     }
@@ -82,6 +91,33 @@ public class StatsArene {
 	    } while (echange);
 
 	    return nbEchanges;
+	}
+	
+	//parti 3
+	public static int[] sansDoublons(int[] t) {
+	    int[] temp = new int[t.length];
+	    int nb = 0;
+
+	    for (int i = 0; i < t.length; i++) {
+	        boolean dejaPresent = false;
+
+	        for (int k = 0; k < nb; k++) {
+	            if (temp[k] == t[i]) {
+	                dejaPresent = true;
+	            }
+	        }
+
+	        if (!dejaPresent) {
+	            temp[nb] = t[i];
+	            nb++;
+	        }
+	    }
+
+	    int[] resultat = new int[nb];
+	    for (int i = 0; i < nb; i++) {
+	        resultat[i] = temp[i];
+	    }
+	    return resultat;
 	}
 	
 }

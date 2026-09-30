@@ -24,6 +24,10 @@ public class Main {
             System.out.println("0. Quitter");  
             
             System.out.print("Votre proposition : ");
+            while (!sc.hasNextInt()) {
+                System.out.print("Ce n'est pas un nombre, réessayez : ");
+                sc.next(); // jette la saisie invalide
+            }
             choix = sc.nextInt();
             
             switch(choix) {

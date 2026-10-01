@@ -1,4 +1,4 @@
-public class Combattant {
+public abstract class Combattant {
 
     private final String nom;
     private final int pvMax;
@@ -72,6 +72,14 @@ public class Combattant {
         }
     }
 
+    // 4.2 degats sans la def (pour le mage)
+    protected void subirDegatsBruts(int d) {
+        pv = pv - d;
+        if (pv < 0) {
+            pv = 0;
+        }
+    }
+
     // 3.4 soigner
     public void soigner(int s) {
         if (estKO()) {
@@ -94,13 +102,16 @@ public class Combattant {
         return nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
     }
 
+    // 4.1 chaque heros attaque a sa facon
+    public abstract int attaquer(Combattant cible);
+
     // tests
     public static void main(String[] args) {
-        Combattant k = new Combattant("Kaelen", 120, 18, 6);
+        Combattant k = new Guerrier("Kaelen", 120, 18, 6);
         System.out.println(k);
 
         try {
-            Combattant faux = new Combattant("Bob", 120, 70, 6);
+            Combattant faux = new Guerrier("Bob", 120, 70, 6);
         } catch (IllegalArgumentException e) {
             System.out.println("Erreur attendue : " + e.getMessage());
         }
@@ -119,5 +130,25 @@ public class Combattant {
 
         k.soigner(50);
         System.out.println("Soin sur un KO : " + k);    // reste a 0
+
+        // tests partie 4
+        Guerrier g = new Guerrier("Torvald", 120, 18, 6);
+        Mage m = new Mage("Lyra", 90, 15, 3);
+        Voleur v = new Voleur("Shade", 100, 14, 4, 25);
+
+        System.out.println("\n-- Guerrier (la 5e doit etre doublee)");
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Degats : " + g.attaquer(m));
+        }
+
+        System.out.println("\n-- Mage (3 sorts puis plus de mana)");
+        for (int i = 0; i < 4; i++) {
+            System.out.println("Degats : " + m.attaquer(g));
+        }
+
+        System.out.println("\n-- Voleur (parfois double frappe)");
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Degats : " + v.attaquer(g));
+        }
     }
 }

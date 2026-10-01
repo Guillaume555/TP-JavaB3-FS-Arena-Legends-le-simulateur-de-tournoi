@@ -32,16 +32,36 @@ public class Combattant {
 
         nbCombattants++;
     }
+    
+    //partie 2
+    public String getNom() {
+        return nom;
+    }
+    public int getPvMax() {
+        return pvMax;
+    }
+
+    public int getPv() {
+        return pv;
+    }
+
+    public int getAttaque() {
+        return attaque;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+    
+    public static int getNbCombattants() {
+        return nbCombattants;
+    }
 
     // tests
     public static void main(String[] args) {
-        Combattant k = new Combattant("Kaelen", 120, 18, 6);
-        System.out.println("Kaelen créé !");
-
-        try {
-            Combattant faux = new Combattant("Bob", 120, 70, 6);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Erreur attendue : " + e.getMessage());
-        }
+        
+        
     }
+    
+
 }

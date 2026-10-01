@@ -5,6 +5,7 @@ public abstract class Combattant {
     private int pv;
     private int attaque;
     private int defense;
+    private int victoires = 0;
 
     private static int nbCombattants = 0;
 
@@ -55,8 +56,17 @@ public abstract class Combattant {
         return defense;
     }
 
+    public int getVictoires() {
+        return victoires;
+    }
+
     public static int getNbCombattants() {
         return nbCombattants;
+    }
+
+    // 5 on peut juste ajouter +1, pas mettre n'importe quelle valeur
+    public void ajouterVictoire() {
+        victoires++;
     }
 
     // 3.3 subir degats

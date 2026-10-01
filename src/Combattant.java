@@ -99,11 +99,14 @@ public abstract class Combattant {
 
     @Override
     public String toString() {
-        return nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
+        return nom + " (" + getClasse() + ") [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
     }
 
     // 4.1 chaque heros attaque a sa facon
     public abstract int attaquer(Combattant cible);
+
+    // 4.4 nom de la classe pour l'affichage
+    public abstract String getClasse();
 
     // tests
     public static void main(String[] args) {
@@ -136,6 +139,11 @@ public abstract class Combattant {
         Mage m = new Mage("Lyra", 90, 15, 3);
         Voleur v = new Voleur("Shade", 100, 14, 4, 25);
 
+        System.out.println();
+        System.out.println(g);
+        System.out.println(m);
+        System.out.println(v);
+
         System.out.println("\n-- Guerrier (la 5e doit etre doublee)");
         for (int i = 0; i < 5; i++) {
             System.out.println("Degats : " + g.attaquer(m));
@@ -149,6 +157,13 @@ public abstract class Combattant {
         System.out.println("\n-- Voleur (parfois double frappe)");
         for (int i = 0; i < 5; i++) {
             System.out.println("Degats : " + v.attaquer(g));
+        }
+
+        // test esquive : le guerrier tape 10 fois le voleur
+        System.out.println("\n-- Esquive du voleur");
+        for (int i = 0; i < 10; i++) {
+            g.attaquer(v);
+            System.out.println(v);
         }
     }
 }

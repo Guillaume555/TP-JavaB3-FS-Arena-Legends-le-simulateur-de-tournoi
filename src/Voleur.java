@@ -31,4 +31,18 @@ public class Voleur extends Combattant {
 
         return total;
     }
+
+    // 4.3 chance d'esquiver totalement, sinon degats normaux
+    @Override
+    public void subirDegats(int d) {
+        if (rand.nextInt(100) < esquive) {
+            return;
+        }
+        super.subirDegats(d);
+    }
+
+    @Override
+    public String getClasse() {
+        return "Voleur";
+    }
 }

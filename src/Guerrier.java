@@ -25,4 +25,9 @@ public class Guerrier extends Combattant {
         cible.subirDegats(degats);
         return degats;
     }
+
+    @Override
+    public String getClasse() {
+        return "Guerrier";
+    }
 }

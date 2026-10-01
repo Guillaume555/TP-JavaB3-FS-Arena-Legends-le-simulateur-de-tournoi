@@ -28,4 +28,9 @@ public class Mage extends Combattant {
 
         return degats;
     }
+
+    @Override
+    public String getClasse() {
+        return "Mage";
+    }
 }
